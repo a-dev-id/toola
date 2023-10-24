@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
     <!-- Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="{{asset('vendors/viho')}}/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendors/viho')}}/assets/css/icofont.css">
     <!-- Themify icon-->
@@ -28,9 +28,11 @@
     <!-- Feather icon-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendors/viho')}}/assets/css/feather-icon.css">
     <!-- Plugins css start-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="{{asset('vendors/viho')}}/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendors/viho')}}/assets/css/style.css">
     <link id="color" rel="stylesheet" href="{{asset('vendors/viho')}}/assets/css/color-1.css" media="screen">
@@ -39,6 +41,7 @@
 
     @vite(['resources/js/app.js'])
     @livewireStyles
+    @stack('css')
 </head>
 
 <body>
@@ -128,7 +131,8 @@
                                         <h6>General </h6>
                                     </div>
                                 </li>
-                                <li class="dropdown"><a class="nav-link menu-title link-nav" href="{{route('dashboard')}}"><i data-feather="home"></i><span>Dashboard</span></a></li>
+                                <li class="dropdown"><a class="nav-link menu-title link-nav" href="{{route('dashboard.index')}}" wire:navigate><i data-feather="home"></i><span>Dashboard</span></a></li>
+                                <li class="dropdown"><a class="nav-link menu-title link-nav" href="{{route('calendar.index')}}" wire:navigate><i data-feather="calendar"></i><span>Calendar</span></a></li>
 
                             </ul>
                         </div>
@@ -137,57 +141,7 @@
                 </nav>
             </header>
             <!-- Page Sidebar Ends-->
-            <div class="page-body">
-                <div class="container-fluid">
-                    <div class="page-header">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h3>Sample Page</h3>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item">Pages</li>
-                                    <li class="breadcrumb-item active">Sample Page</li>
-                                </ol>
-                            </div>
-                            <div class="col-sm-6">
-                                <!-- Bookmark Start-->
-                                <div class="bookmark">
-                                    <ul>
-                                        <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
-                                        <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
-                                        <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
-                                        <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
-                                            <form class="form-inline search-form">
-                                                <div class="form-group form-control-search">
-                                                    <input type="text" placeholder="Search..">
-                                                </div>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- Bookmark Ends-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Container-fluid starts-->
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header pb-0">
-                                    <h5>Sample Card</h5><span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                                </div>
-                                <div class="card-body">
-                                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Container-fluid Ends-->
-            </div>
+            {{$slot}}
             <!-- footer start-->
             <footer class="footer">
                 <div class="container-fluid">
@@ -205,6 +159,8 @@
     </div>
     <!-- latest jquery-->
     <script src="{{asset('vendors/viho')}}/assets/js/jquery-3.5.1.min.js"></script>
+    <!-- font awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
     <!-- feather icon js-->
     <script src="{{asset('vendors/viho')}}/assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="{{asset('vendors/viho')}}/assets/js/icons/feather-icon/feather-icon.js"></script>
@@ -212,17 +168,19 @@
     <script src="{{asset('vendors/viho')}}/assets/js/sidebar-menu.js"></script>
     <script src="{{asset('vendors/viho')}}/assets/js/config.js"></script>
     <!-- Bootstrap js-->
-    <script src="{{asset('vendors/viho')}}/assets/js/bootstrap/popper.min.js"></script>
-    <script src="{{asset('vendors/viho')}}/assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <!-- Plugins JS start-->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{asset('vendors/viho')}}/assets/js/script.js"></script>
     {{-- <script src="{{asset('vendors/viho')}}/assets/js/theme-customizer/customizer.js"></script> --}}
     <!-- login js-->
     <!-- Plugin used-->
-
     @livewireScripts
+    @stack('js')
 </body>
 
 </html>
